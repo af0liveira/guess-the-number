@@ -19,6 +19,14 @@ int main() {
         printf("Attempt %d of %d. What is the secret number? \n", i, NUM_GUESSES);
         scanf("%d", &user_guess);
 
+        // validate user's input
+        int invalid_guess = user_guess < 0;
+        if (invalid_guess) {
+            printf("Values must be positive!\n");
+            i--;  // don't count rounds with invalid guesses
+            continue;
+        }
+        
         // evaluate the player's guess
         int good_guess = (user_guess == secret_number);
         
