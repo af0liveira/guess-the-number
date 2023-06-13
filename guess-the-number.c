@@ -16,7 +16,7 @@ int main() {
 
         // ask the user to guess the number
         int user_guess;
-        printf("What is the secret number? \n");
+        printf("Attempt %d of %d. What is the secret number? \n", i, NUM_GUESSES);
         scanf("%d", &user_guess);
 
         // evaluate the player's guess
@@ -29,12 +29,18 @@ int main() {
             int guess_is_larger = user_guess > secret_number;
 
             if (guess_is_larger) {
-                printf("Nope! %d is larger than the secret number!\n", user_guess);
+                printf("Nope! %d is larger than the secret number! ", user_guess);
             } else {
-                printf("Nope! %d is lower than the secret number!\n", user_guess);
+                printf("Nope! %d is lower than the secret number! ", user_guess);
             }
 
-            printf("Try again! ");
+            int can_try_again = i < NUM_GUESSES;
+
+            if (can_try_again) {
+                printf("Try again\n");
+            } else {
+                printf("You lost!\nThe secret number was %d.\n", secret_number);
+            }
 
         }
 
