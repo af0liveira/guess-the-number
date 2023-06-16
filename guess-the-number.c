@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
 
@@ -10,12 +11,13 @@ int main() {
     // define the secret number
     int secret_number = 42;  // TODO: make in a random integer
 
-    // delfor (int i = 1; i <= NUM_GUESSES; i++) {
-
     int user_guess;
     int num_attempts = 0;
+    float score = 1000;
 
     while (1) {
+
+        printf("Current score: %.1f\n", score);
 
         // ask the user to guess the number
 
@@ -39,9 +41,15 @@ int main() {
 
         if (good_guess) {
             printf("Congratulations! The secret number was indeed %d!\n", secret_number);
-            printf("It took you %d attempts to guess the secret number.\n", num_attempts);
+            printf("** Final score: %.1f **\n", score);
             break;
         } else {
+
+            // Update score
+            score -= abs(secret_number - user_guess) / 2.0;
+
+            // Give hint for player's next guess
+
             int overestimated_guess = user_guess > secret_number;
 
             if (overestimated_guess) {
@@ -50,7 +58,6 @@ int main() {
                 printf("Nope! %d is lower than the secret number!\n", user_guess);
             }
 
-            printf("This was attemp #%d. Maybe you'll get the next one...\n", num_attempts);
         }
 
     }
