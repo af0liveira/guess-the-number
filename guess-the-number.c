@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main() {
 
@@ -8,8 +9,10 @@ int main() {
     printf("* Welcome to Guess the Number! *\n");
     printf("********************************\n");
 
-    // define the secret number
-    int secret_number = 42;  // TODO: make in a random integer
+    // select a random secret number from 0 to 99
+    int t = time(0);  // number of seconds since the epoch
+    srand(t);         // seed the random number generator
+    int secret_number = rand() % 100;  // get a random number in [0, 99]
 
     int user_guess;
     int num_attempts = 0;
